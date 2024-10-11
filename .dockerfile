@@ -1,22 +1,23 @@
 # Use an official Python runtime as a parent image
-FROM python:3.9-slim-buster
+FROM python:3.9.13-slim-buster
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
+# The enviroment variable ensures that the python output is set straight
+# to the terminal with out buffering it first
 ENV PYTHONUNBUFFERED 1
 
-# Set the working directory in the container to /app
-WORKDIR /app
+# Set the working directory to /drf
+# NOTE: all the directives that follow in the Dockerfile will be executed in
+# that directory.
+WORKDIR /drf_src
 
-# Add the current directory files (on your machine) to the container
-ADD . /app/
+RUN ls .
 
 # Install any needed packages specified in requirements.txt
-RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expose the port server is running on
-EXPOSE 8000
+VOLUME /drf_src
 
-# Start the server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+EXPOSE 8080
+
+CMD python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+# CMD ["%%CMD%%"]
