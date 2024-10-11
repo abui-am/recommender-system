@@ -1,0 +1,5 @@
+[build]
+    builtin = "python"
+
+[build.settings]
+    pythonbase = "3.9.13-slim-buster"
