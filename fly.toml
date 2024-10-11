@@ -1,8 +1,18 @@
-app = "app-dry-feather-2641"
+# fly.toml app configuration file generated for app-cold-dream-2787 on 2024-10-12T00:06:45+07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
+app = 'app-cold-dream-2787'
+primary_region = 'sin'
 
 [build]
-    builtin = "python"
+  builtin = 'python'
 
-[build.settings]
-    pythonbase = "3.9.13-slim-buster"
+  [build.settings]
+    pythonbase = '3.9.13-slim-buster'
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
